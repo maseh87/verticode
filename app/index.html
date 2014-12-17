@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web Starter Kit</title>
+    <title>Verticode</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -27,36 +27,56 @@
     -->
 
     <!-- Page styles -->
+    <link rel="stylesheet" type="text/css" href="lib/lumx/dist/css/lumx.css">
     <link rel="stylesheet" href="styles/main.css">
   </head>
-  <body>
-    <header class="app-bar promote-layer">
-      <div class="app-bar-container">
-        <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
-        <h1 class="logo">Web <strong>Starter Kit</strong></h1>
-        <section class="app-bar-actions">
-        <!-- Put App Bar Buttons Here -->
-        <!-- e.g <button><i class="icon icon-star"></i></button> -->
-        </section>
+  <body ng-app="verticode">
+    
+  <div ng-controller="controller">
+    <div class="card">
+      <div class="toolbar">
+          <div class="toolbar__left mr-">
+              <button class="btn btn--l btn--black btn--icon" lx-ripple>
+                  <i class="mdi mdi--menu"></i>
+              </button>
+          </div>
+
+          <strong class="toolbar__label">
+              Lorem Ipsum
+          </strong>
+
+          <div class="toolbar__right">
+              <lx-dropdown position="right" from-top>
+                  <button class="btn btn--l btn--black btn--icon" lx-ripple lx-dropdown-toggle>
+                      <i class="mdi mdi--more-vert"></i>
+                  </button>
+
+                  <lx-dropdown-menu>
+                      <ul>
+                          <li><a class="dropdown-link">Action</a></li>
+                          <li><a class="dropdown-link">Another action</a></li>
+                          <li><a class="dropdown-link">Something else here</a></li>
+                          <li class="dropdown-divider"></li>
+                          <li><a class="dropdown-link dropdown-link--is-header">Header</a></li>
+                          <li><a class="dropdown-link">Separated link</a></li>
+                      </ul>
+                  </lx-dropdown-menu>
+              </lx-dropdown>
+              
+              <lx-search-filter closed theme="dark"></lx-search-filter>
+          </div>
       </div>
-    </header>
+    </div>
+  </div>
 
-    <nav class="navdrawer-container promote-layer">
-      <h4>Navigation</h4>
-      <ul>
-        <li><a href="#hello">Hello</a></li>
-        <li><a href="#get-started">Get Started</a></li>
-        <li><a href="styleguide.html">Style Guide</a></li>
-      </ul>
-    </nav>
+    
 
-    <main>
-      <h1 id="hello">Hello!</h1>
-      <p>Welcome to Web Starter Kit.</p>
 
-      <h2 id="get-started">Get Started.</h2>
-      <p>Read how to <a href="http://developers.google.com/web/starter-kit">Get Started</a> or check out the <a href="styleguide.html">Style Guide</a>.</p>
-    </main>
+
+
+
+
+
 
     <!-- Client Dependencies -->
     <script src="lib/jquery/dist/jquery.js"></script>
