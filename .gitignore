@@ -1,2 +1,3 @@
 node_modules/
-client/lib
+app/lib
+dist/lib
