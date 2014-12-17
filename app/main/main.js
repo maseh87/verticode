@@ -3,5 +3,5 @@ angular.module('verticode', [
 ])
 
 .controller('controller', ['$scope', function ($scope) {
-    $scope.test = 'test'
+    $scope.test = 'test';
 }]);
