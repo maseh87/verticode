@@ -3,7 +3,10 @@ angular.module('verticode', [
   'auth0',
   'angular-storage',
   'angular-jwt',
-  'ui.router'
+  'ui.router',
+  'main.services',
+  'main.auth',
+  'main.login'
 ])
 
 .config(['authProvider', '$stateProvider', '$urlRouterProvider', function (authProvider, $stateProvider, $urlRouterProvider) {
@@ -21,7 +24,7 @@ angular.module('verticode', [
     loginState: 'main.login'
   });
 
-  $urlRouterProvider.otherwise('/main');
+  $urlRouterProvider.otherwise('/');
 }])
 
 .run(['auth', 'store', '$state', 'jwtHelper', function (auth, store, $state, jwtHelper) {

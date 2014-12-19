@@ -4,7 +4,7 @@ angular.module('main.login', [])
 	$stateProvider
 		.state('main.login', {
 			url: 'login',
-			templateUrl: 'main/login/login.tpl.html',
+			templateUrl: '<ui-view></ui-view>',
 			controller: 'LoginCtrl'
 		});
 }])
@@ -13,7 +13,7 @@ angular.module('main.login', [])
 	$scope.signin = function() {
     	AuthFactory.login()
       	.then(function(profile) {
-        	$state.go('app.main');
+        	$state.go('main');
       	}).catch(function(err) {
         	console.log(err);
       	});
