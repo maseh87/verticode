@@ -13,7 +13,7 @@ angular.module('main.login', [])
 	$scope.signin = function() {
     	AuthFactory.login()
       	.then(function(profile) {
-        	$state.go('app.main.orders');
+        	$state.go('app.main');
       	}).catch(function(err) {
         	console.log(err);
       	});

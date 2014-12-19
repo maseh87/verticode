@@ -18,29 +18,24 @@ angular.module('verticode', [
   authProvider.init({
     domain: '33m.auth0.com',
     clientID: 'ORkiU7BYEfMQd2MvLMGmUzzXSuax84Gv',
-    loginState: 'app.login'
+    loginState: 'main.login'
   });
 
-  $urlRouterProvider.otherwise('/main/home');
+  $urlRouterProvider.otherwise('/main');
 }])
 
-.run(['auth', function (auth) {
+.run(['auth', 'store', '$state', 'jwtHelper', function (auth, store, $state, jwtHelper) {
   // This hooks al auth events to check everything as soon as the app starts
   auth.hookEvents();
-
-}])
-
-.controller('LoginCtrl', ['$scope', 'store', '$location', 'auth', function ($scope, store, $location, auth) {
-  $scope.login = function() {
-    auth.signin({}, function(profile, token) {
-      // Success callback
-      store.set('profile', profile);
-      store.set('token', token);
-      $location.path('/');
-    }, function() {
-      // Error callback
-      console.log('Error in Login controller');
-    });
-  };
-  $scope.login();
+  if (!auth.isAuthenticated) {
+    var token = store.get('token');
+    if (token) {
+      if (!jwtHelper.isTokenExpired(token)) {
+        auth.authenticate(store.get('profile'), token);
+      } else {
+        // Either show Login page or use the refresh token to get a new idToken
+        $state.go('app.login');
+      }
+    }
+  }
 }]);
