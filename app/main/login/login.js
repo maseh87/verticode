@@ -11,12 +11,12 @@ angular.module('main.login', [])
 
 .controller('LoginCtrl', ['$scope', 'AuthFactory', '$state', function ($scope, AuthFactory, $state) {
 	$scope.signin = function() {
-    	AuthFactory.login()
-      	.then(function(profile) {
-        	$state.go('main');
-      	}).catch(function(err) {
-        	console.log(err);
-      	});
+  	AuthFactory.login()
+    	.then(function(profile) {
+      	$state.go('main');
+    	}).catch(function(err) {
+      	console.log(err);
+    	});
  	};
   $scope.signin();
 }]);

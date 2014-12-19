@@ -4,13 +4,7 @@ angular.module('main.auth', [])
 
   var login = function() {
     var defer = $q.defer();
-    auth.signin({
-      popup: true,
-      standalone: true,
-      authParams: {
-        scope: 'openid offline_access',
-      }
-    }, function(profile, token, accessToken, state, refreshToken) {
+    auth.signin({}, function(profile, token, accessToken, state, refreshToken) {
       console.log(profile, 'profile')
       console.log(token, 'token')
       console.log(refreshToken, 'refreshToken')

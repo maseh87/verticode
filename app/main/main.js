@@ -6,7 +6,8 @@ angular.module('verticode', [
   'ui.router',
   'main.services',
   'main.auth',
-  'main.login'
+  'main.login',
+  'main.home'
 ])
 
 .config(['authProvider', '$stateProvider', '$urlRouterProvider', function (authProvider, $stateProvider, $urlRouterProvider) {
@@ -20,11 +21,10 @@ angular.module('verticode', [
 
   authProvider.init({
     domain: '33m.auth0.com',
-    clientID: 'ORkiU7BYEfMQd2MvLMGmUzzXSuax84Gv',
-    loginState: 'main.login'
+    clientID: 'ORkiU7BYEfMQd2MvLMGmUzzXSuax84Gv'
   });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/main/home');
 }])
 
 .run(['auth', 'store', '$state', 'jwtHelper', function (auth, store, $state, jwtHelper) {
@@ -33,11 +33,12 @@ angular.module('verticode', [
   if (!auth.isAuthenticated) {
     var token = store.get('token');
     if (token) {
+      console.log('Logged in fool')
       if (!jwtHelper.isTokenExpired(token)) {
         auth.authenticate(store.get('profile'), token);
       } else {
         // Either show Login page or use the refresh token to get a new idToken
-        $state.go('app.login');
+        $state.go('main.login');
       }
     }
   }
