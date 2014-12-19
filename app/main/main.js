@@ -2,14 +2,26 @@ angular.module('verticode', [
   'lumx',
   'auth0',
   'angular-storage',
-  'angular-jwt'
+  'angular-jwt',
+  'ui.router'
 ])
 
-.config(['authProvider', function (authProvider) {
+.config(['authProvider', '$stateProvider', '$urlRouterProvider', function (authProvider, $stateProvider, $urlRouterProvider) {
+
+  $stateProvider
+    .state('main', {
+      url: '/',
+      template: '<ui-view></ui-view>',
+      abstract: true
+    })
+
   authProvider.init({
     domain: '33m.auth0.com',
-    clientID: 'ORkiU7BYEfMQd2MvLMGmUzzXSuax84Gv'
+    clientID: 'ORkiU7BYEfMQd2MvLMGmUzzXSuax84Gv',
+    loginState: 'app.login'
   });
+
+  $urlRouterProvider.otherwise('/main/home');
 }])
 
 .run(['auth', function (auth) {
@@ -29,5 +41,6 @@ angular.module('verticode', [
       // Error callback
       console.log('Error in Login controller');
     });
-  }
-}])
+  };
+  $scope.login();
+}]);
