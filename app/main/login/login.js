@@ -10,9 +10,9 @@ angular.module('main.login', [])
 
 .controller('LoginCtrl', ['$scope', 'AuthFactory', '$state', function ($scope, AuthFactory, $state) {
   $scope.signin = function() {
-    console.log('signing in')
     AuthFactory.login()
       .then(function(profile) {
+        console.log('signing in', profile);
         $state.go('main.home');
       }).catch(function(err) {
         console.log(err);
