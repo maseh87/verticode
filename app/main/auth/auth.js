@@ -5,9 +5,9 @@ angular.module('main.auth', [])
   var login = function() {
     var defer = $q.defer();
     auth.signin({}, function(profile, token, accessToken, state, refreshToken) {
-      console.log(profile, 'profile')
-      console.log(token, 'token')
-      console.log(refreshToken, 'refreshToken')
+      console.log(profile, 'profile');
+      console.log(token, 'token');
+      console.log(refreshToken, 'refreshToken');
 
       // Success callback
       store.set('profile', profile);
