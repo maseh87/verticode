@@ -24,7 +24,7 @@ angular.module('verticode', [
     clientID: 'ORkiU7BYEfMQd2MvLMGmUzzXSuax84Gv'
   });
 
-  $urlRouterProvider.otherwise('/main/home');
+  $urlRouterProvider.otherwise('/login');
 }])
 
 .run(['auth', 'store', '$state', 'jwtHelper', '$rootScope', function (auth, store, $state, jwtHelper, $rootScope) {
@@ -32,21 +32,21 @@ angular.module('verticode', [
 
   auth.hookEvents();
 
-  $rootScope.$on('stateChangeStart', function(e, next, current) {
-    console.log('Logged in fool')
+  // $rootScope.$on('$stateChangeStart', function(e, next, nextParams, fromState, fromParams) {
+  //   console.log('Logged in fool')
     
-    if (next.authenticate && !auth.isAuthenticated) {
-      var token = store.get('token');
-      if (token) {
-        if (!jwtHelper.isTokenExpired(token)) {
-          auth.authenticate(store.get('profile'), token);
-        } else {
-          // Either show Login page or use the refresh token to get a new idToken
-          $state.go('main.login');
-        }
-      }
-    }   
-  });
+  //   if (next.authenticate && !auth.isAuthenticated) {
+  //     var token = store.get('token');
+  //     if (token) {
+  //       if (!jwtHelper.isTokenExpired(token)) {
+  //         auth.authenticate(store.get('profile'), token);
+  //       } else {
+  //         // Either show Login page or use the refresh token to get a new idToken
+  //         $state.go('main.login');
+  //       }
+  //     }
+  //   }   
+  // });
 
 
 }]);

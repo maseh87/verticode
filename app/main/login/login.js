@@ -4,16 +4,16 @@ angular.module('main.login', [])
   $stateProvider
     .state('main.login', {
       url: 'login',
-      templateUrl: '<ui-view></ui-view>',
       controller: 'LoginCtrl'
     });
 }])
 
 .controller('LoginCtrl', ['$scope', 'AuthFactory', '$state', function ($scope, AuthFactory, $state) {
   $scope.signin = function() {
+    console.log('signing in')
     AuthFactory.login()
       .then(function(profile) {
-        $state.go('main');
+        $state.go('main.home');
       }).catch(function(err) {
         console.log(err);
       });

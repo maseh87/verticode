@@ -1,6 +1,6 @@
 angular.module('main.auth', [])
 
-.factory('AuthFactory', function(auth, store, $q) {
+.factory('AuthFactory', ['auth', 'store', '$q', function(auth, store, $q) {
 
   var login = function() {
     var defer = $q.defer();
@@ -24,7 +24,7 @@ angular.module('main.auth', [])
   return {
     login: login
   };
-});
+}]);
 
 
 
